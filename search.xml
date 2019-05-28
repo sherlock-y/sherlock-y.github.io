@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>http://www.yangbing.club/2019/05/28/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<a id="more"></a>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Diary </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[「Redis基础」常用命令有哪些]]></title>
+      <url>http://www.yangbing.club/2018/12/06/redis-common-commands/</url>
+      <content type="html"><![CDATA[<p> 按照Redis<a href="https://redis.io/commands" target="_blank" rel="external">官方文档</a>，Redis命令根据其操作对象的不同，可大体分为Strings、Lists、Hashes、Sets、Sorted Sets、Streams、Keys、Pub/Sub、Cluster、Connection、Geo、HyperLogLog、Scripting、Server、Transactions共15种类别。这类别序列中<strong>Cluster</strong>及其左边的应该是我们在开发过程中用的最为频繁的，其右边的命令则接触不多，一般是碰到对应的问题才会涉及。下面根据类别的所属范畴，来依次熟悉下常用的几种命令。</p>
+<h1 id="操作Key的命令"><a href="#操作Key的命令" class="headerlink" title="操作Key的命令"></a>操作Key的命令</h1><p>Redis本质是内存k-v数据库，其中的<code>k</code>就是我们所说的Key，<code>v</code>则是Redis支持的各种数据类型，后面会提到。存入Redis的所有数据都会与特定的Key关联，反过来，数据的读取也是基于Key的。我们经常会关心Redis中有哪些Key、有没有我所找的Key、某个Key的过期时间还剩多少等等之类，都可由Redis内置命令来得到。</p>
+<h2 id="KEYS-pattern"><a href="#KEYS-pattern" class="headerlink" title="KEYS pattern"></a><a href="https://redis.io/commands/keys" target="_blank" rel="external">KEYS pattern</a></h2>]]></content>
+      
+        <categories>
+            
+            <category> redis </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Redis基础 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JVM系列[1]-Java类的生命周期]]></title>
       <url>http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/</url>
       <content type="html"><![CDATA[<p>原本是想写一篇关于Java类加载机制的博文，后来发现这个主题有点大，其中涉及的细节点太多，一篇博文，三言两语恐怕无法讲明白，于是乎决定从整体到局部，先来谈谈类的生命周期，从整体把握一个类从“出生”到“凋亡”的过程，其中涉及了类加载、使用、卸载等各个阶段，有了整体的认知后，再深入细节并结合具体实例，探讨加载原理、类加载器等相关知识。今天就让博主带领你开启第一段旅程：类的生命周期详解。</p>
@@ -40,12 +86,12 @@
 <li><strong>运行时加载</strong>。当虚拟机在运行过程中需要某个类时，如果该类的class未被加载则加载之。</li>
 </ul>
 <h3 id="1-2-连接"><a href="#1-2-连接" class="headerlink" title="1.2 连接"></a>1.2 连接</h3><p>连接可细分为三个阶段：验证、准备和解析。</p>
-<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>连接的第一个阶段，确保从class文件中所加载的字节流符合当前虚拟机的要求，且<strong>不会危害虚拟机自身的安全</strong>。该阶段会依次进行如下校验：</p>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>连接的第一个阶段，确保从class文件中所加载的字节流符合当前虚拟机的要求，且<strong>不会危害虚拟机自身的安全</strong>。该阶段会依次进行如下验证：</p>
 <ul>
-<li><strong>文件格式校验</strong>：判断当前字节流是否符合<strong>class文件格式</strong>的规范。如是否以class文件的魔数<strong>oxCAFEBABE</strong>开头、主次版本号是否在当前虚拟机的处理范围之内、常量池中常量的类型是否合法等等。校验的目的是保证字节流能正确地解析并存储于方法区内，通过验证后，会在方法区中存储，后面的校验动作都是基于方法区的存储结构进行，不再直接操作字节流。</li>
-<li><strong>元数据校验</strong>：语义分析，判断其描述的信息是否符合Java语言的规范要求。如该类除了<strong>java.lang.Object</strong>之外，是否有其他父类；该类的父类是否继承了不允许被继承的final类等</li>
+<li><strong>文件格式验证</strong>：判断当前字节流是否符合<strong>class文件格式</strong>的规范。如是否以class文件的魔数<strong>oxCAFEBABE</strong>开头、主次版本号是否在当前虚拟机的处理范围之内、常量池中常量的类型是否合法等等。校验的目的是保证字节流能正确地解析并存储于方法区内，通过验证后，会在方法区中存储，后面的校验动作都是基于方法区的存储结构进行，不再直接操作字节流。</li>
+<li><strong>元数据验证</strong>：语义分析，判断其描述的信息是否符合Java语言的规范要求。如该类除了<strong>java.lang.Object</strong>之外，是否有其他父类；该类的父类是否继承了不允许被继承的final类等</li>
 <li><strong>字节码验证</strong>：通过数据流和控制流分析，判断程序语义是否合法、符合逻辑。如保证跳转指令不会跳转到方法体以外的字节码指令上、方法体中的类型转换是有效的等。</li>
-<li><strong>符号引用校验</strong>：发生在解析阶段将符号引用转为直接引用的时候，确保解析动作能正确执行。如符号引用中通过字符串描述的全限定名是否能找到对应类。</li>
+<li><strong>符号引用验证</strong>：发生在解析阶段将符号引用转为直接引用的时候，确保解析动作能正确执行。如符号引用中通过字符串描述的全限定名是否能找到对应类。</li>
 </ul>
 <p>从上面可以看出，验证阶段非常重要，关乎虚拟机的安全，<strong>但它并不是必须的</strong>，它对程序运行期没有影响，如果所引用的类已被反复使用和验证过，那么可以考虑采用<code>-Xverifynone</code>参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。通常来讲，应用所加载的class文件都是由我们本地或服务器的JDK编译通过的，我们都确定它是符合虚拟机要求的，对于这类class文件其实并不需要验证，主要是像从网络加载的class字节流或是通过动态字节码技术生成的字节流，出于安全的考虑，是必须要经过严格验证的。</p>
 <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>准备阶段做的唯一一件事就是为类的静态变量分配内存，并将其初始化为默认值。注意这里的初始化和后面要讲的“初始化阶段”是不同的，容易混淆。<strong>这些内存都在方法区中分配</strong>。几点注意项：</p>
@@ -83,7 +129,7 @@
 <ul>
 <li>通过子类调用父类的静态字段，不会触发子类初始化。</li>
 <li>通过数组定义来引用类，不会触发该类的初始化。例如<code>A[] arr = new A[8]</code> ，并不会触发A的初始化。</li>
-<li>在类A中调用B的常量字段，不会触发B的初始化。因为此常量字段在编译阶段会存入调用类A的常量池中，本质上并没有直接引用到定义类B。</li>
+<li>在类A中调用B的常量字段，不会触发B的初始化。因为此常量字段在编译阶段会通过常量传播优化而存入调用类A的常量池中，本质上并没有直接引用到定义类B。且编译成class之后，A和B就不存在任何联系了。</li>
 </ul>
 <h2 id="三、类的卸载"><a href="#三、类的卸载" class="headerlink" title="三、类的卸载"></a>三、类的卸载</h2><p>当一个类被判定为无用类时，才可以被卸载。条件苛刻，需要同时满足如下条件：</p>
 <ul>
@@ -929,30 +975,6 @@
             <tag> 事务管理 </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>http://www.yangbing.club/2017/02/16/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<a id="more"></a>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Diary </category>
-            
-        </categories>
-        
         
     </entry>
     
