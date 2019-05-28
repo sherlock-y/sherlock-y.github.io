@@ -4,52 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>http://www.yangbing.club/2019/05/28/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<a id="more"></a>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Diary </category>
-            
-        </categories>
-        
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[「Redis基础」常用命令有哪些]]></title>
-      <url>http://www.yangbing.club/2018/12/06/redis-common-commands/</url>
-      <content type="html"><![CDATA[<p> 按照Redis<a href="https://redis.io/commands" target="_blank" rel="external">官方文档</a>，Redis命令根据其操作对象的不同，可大体分为Strings、Lists、Hashes、Sets、Sorted Sets、Streams、Keys、Pub/Sub、Cluster、Connection、Geo、HyperLogLog、Scripting、Server、Transactions共15种类别。这类别序列中<strong>Cluster</strong>及其左边的应该是我们在开发过程中用的最为频繁的，其右边的命令则接触不多，一般是碰到对应的问题才会涉及。下面根据类别的所属范畴，来依次熟悉下常用的几种命令。</p>
-<h1 id="操作Key的命令"><a href="#操作Key的命令" class="headerlink" title="操作Key的命令"></a>操作Key的命令</h1><p>Redis本质是内存k-v数据库，其中的<code>k</code>就是我们所说的Key，<code>v</code>则是Redis支持的各种数据类型，后面会提到。存入Redis的所有数据都会与特定的Key关联，反过来，数据的读取也是基于Key的。我们经常会关心Redis中有哪些Key、有没有我所找的Key、某个Key的过期时间还剩多少等等之类，都可由Redis内置命令来得到。</p>
-<h2 id="KEYS-pattern"><a href="#KEYS-pattern" class="headerlink" title="KEYS pattern"></a><a href="https://redis.io/commands/keys" target="_blank" rel="external">KEYS pattern</a></h2>]]></content>
-      
-        <categories>
-            
-            <category> redis </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Redis基础 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[JVM系列[1]-Java类的生命周期]]></title>
       <url>http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/</url>
       <content type="html"><![CDATA[<p>原本是想写一篇关于Java类加载机制的博文，后来发现这个主题有点大，其中涉及的细节点太多，一篇博文，三言两语恐怕无法讲明白，于是乎决定从整体到局部，先来谈谈类的生命周期，从整体把握一个类从“出生”到“凋亡”的过程，其中涉及了类加载、使用、卸载等各个阶段，有了整体的认知后，再深入细节并结合具体实例，探讨加载原理、类加载器等相关知识。今天就让博主带领你开启第一段旅程：类的生命周期详解。</p>
@@ -880,9 +834,9 @@
         
         <tags>
             
-            <tag> Shell编程 </tag>
-            
             <tag> Linux命令 </tag>
+            
+            <tag> Shell编程 </tag>
             
         </tags>
         
