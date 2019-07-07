@@ -94,6 +94,12 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文以一个关于类加载的编程题为切入点，阐述了类加载阶段的具体细节，包括加载方式、加载时机、加载原理，以及双亲委派的优劣点。并以具体的类加载器实例Tomcat和OSGi为例，简单分析了类加载器在实践过程中的多种选择。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
         
         <tags>
             
