@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.yangbing.club/2019/07/07/jvm-series-java-class-loading-mechanism/</loc>
+    
+    <lastmod>2019-07-07T08:21:22.517Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.yangbing.club/2017/04/10/common-linux-commands/</loc>
     
     <lastmod>2019-06-30T04:36:34.028Z</lastmod>
