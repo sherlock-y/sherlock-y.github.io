@@ -54,7 +54,7 @@
 <p>通过一个类的全限定名来获取描述此类的二进制字节流的代码模块</p>
 </blockquote>
 <p>经典的三层加载器结构：</p>
-<p><img src="/2019/07/07/jvm-series-java-class-loading-mechanism/classloaders.png" alt="three_level_classloaders"></p>
+<p><img src="/2019/07/07/jvm-series-java-class-loading-mechanism/three_level_classloaders.png" alt="three_level_classloaders"></p>
 <p>1、<strong>启动类加载器</strong>（或称为引导类加载器）：只负责加载<code>&lt;JAVA_HOME&gt;/lib</code>目录中的，或是启动参数<code>-Xbootclasspath</code>所指定路径中的<strong>特定名称类库</strong>。该加载器由C++实现，对Java程序不可见，对于自定义加载器，若是未指定parent，则会委派该加载器进行加载。</p>
 <p>2、<strong>扩展类加载器</strong>：负责加载<code>&lt;JAVA_HOME&gt;/lib/ext</code>目录中的，或是<code>java.ext.dirs</code>系统变量所指定的路径下<strong>所有类库</strong>。该加载器由<code>sum.misc.Launcher$ExtClassLoader</code>实现，可直接使用。</p>
 <p>3、<strong>应用程序类加载器</strong>（或称为系统类加载器）：负责加载用户类路径<code>ClassPath</code>中所有类库。该加载器由<code>sum.misc.Launcher$AppClassLoader</code>实现，可由<code>ClassLoader.getSystemClassLoader()</code>方法获得。</p>
@@ -86,9 +86,7 @@
 <h3 id="OSGi——敢于突破"><a href="#OSGi——敢于突破" class="headerlink" title="OSGi——敢于突破"></a>OSGi——敢于突破</h3><p>OSGi（Open Service Gateway Initiative）是OSGi联盟制定的一个基于Java语言的动态模块化规范，其最著名的应用案例就是Eclipse IDE，它是Eclipse强大插件体系的基础。</p>
 <p>OSGi中的每个模块称为Bundle，一个Bundle可以声明它所依赖的Java Package（通过Import-Package描述），也可以声明它允许导出发布的Java Package（通过Export-Package描述）。Bundle之间的依赖关系为平级依赖，Bundle类加载器之间只有规则，没有固定的委派关系。假设存在BundleA、BundleB和BundleC，</p>
 <blockquote>
-<p>BundleA：声明发布了packageA，依赖了java.*的包</p>
-<p>BundleB：声明依赖了packageA和packageC，同时也依赖了java.*的包</p>
-<p>BundleC：声明发布了packageC，依赖了packageA</p>
+<p>BundleA：声明发布了packageA，依赖了java.*的包<br>BundleB：声明依赖了packageA和packageC，同时也依赖了java.*的包<br>BundleC：声明发布了packageC，依赖了packageA</p>
 </blockquote>
 <p>一个简单的OSGi类加载器架构示例如下：</p>
 <p><img src="/2019/07/07/jvm-series-java-class-loading-mechanism/osgi_classloaders.png" alt="osgi_classloaders"></p>
