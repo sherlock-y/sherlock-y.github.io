@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.yangbing.club/2019/12/21/some-insights-at-work/</loc>
+    
+    <lastmod>2019-12-21T04:43:04.426Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.yangbing.club/2019/07/07/jvm-series-java-class-loading-mechanism/</loc>
     
     <lastmod>2019-07-07T11:24:36.941Z</lastmod>
@@ -11,49 +18,49 @@
   <url>
     <loc>http://www.yangbing.club/2017/04/10/common-linux-commands/</loc>
     
-    <lastmod>2019-06-30T04:36:34.028Z</lastmod>
+    <lastmod>2019-06-30T04:36:34.029Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.yangbing.club/2019/06/29/save-hexo-source-post-with-git-branch/</loc>
     
-    <lastmod>2019-06-29T08:08:43.942Z</lastmod>
+    <lastmod>2019-06-29T08:08:43.943Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.yangbing.club/tags/index.html</loc>
     
-    <lastmod>2019-05-28T14:30:23.072Z</lastmod>
+    <lastmod>2019-05-28T14:30:23.073Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.yangbing.club/categories/index.html</loc>
     
-    <lastmod>2019-05-28T14:30:23.070Z</lastmod>
+    <lastmod>2019-05-28T14:30:23.071Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.yangbing.club/2018/01/13/two-long-types-can-not-use-left-parenthesis-or-right-parenthesis-to-compare-with-each-other-directly-No-they-can/</loc>
     
-    <lastmod>2019-05-28T14:30:23.061Z</lastmod>
+    <lastmod>2019-05-28T14:30:23.062Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/</loc>
     
-    <lastmod>2019-05-28T14:30:23.044Z</lastmod>
+    <lastmod>2019-05-28T14:30:23.045Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.yangbing.club/2017/12/30/talk-about-ali-and-google-s-java-developing-guideline/</loc>
     
-    <lastmod>2019-05-28T14:30:23.041Z</lastmod>
+    <lastmod>2019-05-28T14:30:23.042Z</lastmod>
     
   </url>
   

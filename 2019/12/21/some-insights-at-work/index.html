@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JVM,类的生命周期," />
+  <meta name="keywords" content="思考," />
 
 
 
@@ -87,18 +87,16 @@
 
 
 
-<meta name="description" content="原本是想写一篇关于Java类加载机制的博文，后来发现这个主题有点大，其中涉及的细节点太多，一篇博文，三言两语恐怕无法讲明白，于是乎决定从整体到局部，先来谈谈类的生命周期，从整体把握一个类从“出生”到“凋亡”的过程，其中涉及了类加载、使用、卸载等各个阶段，有了整体的认知后，再深入细节并结合具体实例，探讨加载原理、类加载器等相关知识。今天就让博主带领你开启第一段旅程：类的生命周期详解。">
+<meta name="description" content="不知不觉工作已三年半，准确的说是三年零五个月。在这过程中，在技术和业务上的成长，多多少少都会有一些，但最大的收获，还是长见识。聊聊几点感受吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM系列[1]-Java类的生命周期">
-<meta property="og:url" content="http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/index.html">
+<meta property="og:title" content="工作中的一些感悟">
+<meta property="og:url" content="http://www.yangbing.club/2019/12/21/some-insights-at-work/index.html">
 <meta property="og:site_name" content="小冰的个人博客">
-<meta property="og:description" content="原本是想写一篇关于Java类加载机制的博文，后来发现这个主题有点大，其中涉及的细节点太多，一篇博文，三言两语恐怕无法讲明白，于是乎决定从整体到局部，先来谈谈类的生命周期，从整体把握一个类从“出生”到“凋亡”的过程，其中涉及了类加载、使用、卸载等各个阶段，有了整体的认知后，再深入细节并结合具体实例，探讨加载原理、类加载器等相关知识。今天就让博主带领你开启第一段旅程：类的生命周期详解。">
-<meta property="og:image" content="http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/class lifeCycle.png">
-<meta property="og:updated_time" content="2019-05-28T14:30:23.045Z">
+<meta property="og:description" content="不知不觉工作已三年半，准确的说是三年零五个月。在这过程中，在技术和业务上的成长，多多少少都会有一些，但最大的收获，还是长见识。聊聊几点感受吧。">
+<meta property="og:updated_time" content="2019-12-21T04:43:04.426Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM系列[1]-Java类的生命周期">
-<meta name="twitter:description" content="原本是想写一篇关于Java类加载机制的博文，后来发现这个主题有点大，其中涉及的细节点太多，一篇博文，三言两语恐怕无法讲明白，于是乎决定从整体到局部，先来谈谈类的生命周期，从整体把握一个类从“出生”到“凋亡”的过程，其中涉及了类加载、使用、卸载等各个阶段，有了整体的认知后，再深入细节并结合具体实例，探讨加载原理、类加载器等相关知识。今天就让博主带领你开启第一段旅程：类的生命周期详解。">
-<meta name="twitter:image" content="http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/class lifeCycle.png">
+<meta name="twitter:title" content="工作中的一些感悟">
+<meta name="twitter:description" content="不知不觉工作已三年半，准确的说是三年零五个月。在这过程中，在技术和业务上的成长，多多少少都会有一些，但最大的收获，还是长见识。聊聊几点感受吧。">
 
 
 
@@ -126,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/"/>
+  <link rel="canonical" href="http://www.yangbing.club/2019/12/21/some-insights-at-work/"/>
 
 
 
 
 
-  <title> JVM系列[1]-Java类的生命周期 | 小冰的个人博客 </title>
+  <title> 工作中的一些感悟 | 小冰的个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -303,7 +301,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/">
+  <link itemprop="mainEntityOfPage" href="http://www.yangbing.club/2019/12/21/some-insights-at-work/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="杨冰">
@@ -327,7 +325,7 @@
             
             
               
-                JVM系列[1]-Java类的生命周期
+                工作中的一些感悟
               
             
           </h2>
@@ -342,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-15T17:44:59+08:00">
-                2018-04-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-21T12:00:00+08:00">
+                2019-12-21
               </time>
             
 
@@ -365,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/life/" itemprop="url" rel="index">
+                    <span itemprop="name">life</span>
                   </a>
                 </span>
 
@@ -382,7 +380,7 @@
 
           
           
-             <span id="/2018/04/15/talk-about-java-class-lifecycle/" class="leancloud_visitors" data-flag-title="JVM系列[1]-Java类的生命周期">
+             <span id="/2019/12/21/some-insights-at-work/" class="leancloud_visitors" data-flag-title="工作中的一些感悟">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -416,93 +414,56 @@
       
 
       
-        <p>原本是想写一篇关于Java类加载机制的博文，后来发现这个主题有点大，其中涉及的细节点太多，一篇博文，三言两语恐怕无法讲明白，于是乎决定从整体到局部，先来谈谈类的生命周期，从整体把握一个类从“出生”到“凋亡”的过程，其中涉及了类加载、使用、卸载等各个阶段，有了整体的认知后，再深入细节并结合具体实例，探讨加载原理、类加载器等相关知识。今天就让博主带领你开启第一段旅程：类的生命周期详解。</p>
+        <p>不知不觉工作已三年半，准确的说是三年零五个月。在这过程中，在技术和业务上的成长，多多少少都会有一些，但最大的收获，还是长见识。聊聊几点感受吧。</p>
 <a id="more"></a>
-<h1 id="类的生命周期"><a href="#类的生命周期" class="headerlink" title="类的生命周期"></a>类的生命周期</h1><p>类的生命周期是指一个class从加载到内存直至卸载出内存的过程，共包含<strong>加载</strong>（Loading）、<strong>验证</strong>（Verification）、<strong>准备</strong>（Preparation）、<strong>解析</strong>（Resolution）、<strong>初始化</strong>（Initialization）、<strong>使用</strong>（Using）和<strong>卸载</strong>（Unloading）7个阶段，如下图所示：</p>
-<p><img src="/2018/04/15/talk-about-java-class-lifecycle/class lifeCycle.png" alt="Java类的生命周期"></p>
-<p>其中验证、准备、解析三个阶段统称为<strong>连接</strong>（Linking），而加载、连接、初始化又可以统称为<strong>类加载的过程</strong>，所以我们有时又可以称类的生命周期包含加载、连接、初始化、使用和卸载这5个阶段，或者是类加载、使用、卸载这3个阶段。</p>
-<p>回到上图，加载、验证、准备、初始化和卸载这5个阶段的<strong>开始顺序</strong>是确定的，如图中箭头所示。之所以强调“开始顺序”，是因为这里的先后顺序仅仅是各阶段开始时间的顺序，而不是进行或完成的顺序，这些阶段<strong>通常是相互交叉地混合式进行的</strong>。比如加载和验证，并不是说非要等到加载完成之后，才开始验证阶段，在加载的阶段中，会穿插各种检验动作，否则对于连格式都不符合的字节流，又怎能正确解析出其中的静态数据结构从而转化为方法区中的数据结构呢？对于解析阶段，<strong>其开始时间则比较特殊</strong>，既可能在加载阶段就开始（对常量池中的符号引用的解析），也可能在初始化阶段之后才开始（支持Java语言的动态绑定）。</p>
-<p>下面我们就来看看各个阶段都大致做哪些事情。</p>
-<h2 id="一、类加载的过程"><a href="#一、类加载的过程" class="headerlink" title="一、类加载的过程"></a>一、类加载的过程</h2><p>类加载的过程包含<strong>加载</strong>、<strong>连接</strong>和<strong>初始化</strong>三个阶段。</p>
-<h3 id="1-1-加载"><a href="#1-1-加载" class="headerlink" title="1.1 加载"></a>1.1 加载</h3><p>加载是类加载过程的第一阶段，此时虚拟机将查找并加载类的二进制数据，具体分为三个步骤：</p>
+<h2 id="学会向上汇报"><a href="#学会向上汇报" class="headerlink" title="学会向上汇报"></a>学会向上汇报</h2><p>别只顾埋头做事，要做“对”的事情。</p>
+<p>这是个人情社会，你的领导也只是普通人，他不太会有大把的精力去关注底下的人每天具体干些什么事情，这种情况下，如果你只知道一味地埋头做事，即便做了很多，加班累成狗，但是领导压根不知道，是没有任何意义的，典型的吃力不讨好。很多时候是需要你主动向上汇报的！定期地跟领导保持正向沟通，积极反馈工作中遇到的问题以及自己的想法，让领导感知到你的付出，当然有产出是最好的了。</p>
+<p>什么是“对”的事情？要有全局观，审时度势。当前领导最关心最迫切的事情，就是对的事情。举个栗子，随着用户量的快速增长，系统的压力越来越大，原有最初的系统逐渐暴露问题，甚至因此频繁出现线上故障。这个时候，如果领导发起了“系统压测”的任务，那么当务之急，压测就是最重要的事情，工作的重心应该以此为准。即便此时业务上也有很多新的需求，你也应该做取舍，否则即便你做了一大堆需求，此时的领导根本无暇顾及，他所关注的必然是压测的进度，千万不能捡了芝麻丢了西瓜。</p>
+<h2 id="打破局限，解决问题才是王道"><a href="#打破局限，解决问题才是王道" class="headerlink" title="打破局限，解决问题才是王道"></a>打破局限，解决问题才是王道</h2><p>在遇到紧急情况，如线上故障处理时，快速解决问题才是关键。有的时候我们容易陷入程序员惯有的思维里，遇到问题会习惯性地一上来就尝试用代码去解决，而忽略了一些非代码的简单处理方式，比如粘贴/复制、excel工具、sublime文本替换等。这里列举两个工作中的小例子，深有感悟。</p>
+<h3 id="栗子1：故障处理"><a href="#栗子1：故障处理" class="headerlink" title="栗子1：故障处理"></a>栗子1：故障处理</h3><p>在一次故障处理过程中，需要对一批指定用户做一个操作，这个操作可以通过curl请求来完成，当前已有的是已经导出的以userId逐行排列的userIds.txt文件和请求的url，分别长下面这样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">userIds.txt内容：</div><div class="line">userId1</div><div class="line">userId2</div><div class="line">userId3</div><div class="line">...</div><div class="line">userIdn</div><div class="line"></div><div class="line">url内容：</div><div class="line">https://www.yangbing.club/$&#123;userId&#125;/doing</div></pre></td></tr></table></figure>
+<p>当时的第一反应就是准备写个shell脚本或者Java的Job来搞这个事，本身逻辑简单，一层循环就能搞定，伪代码大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">userIds &lt;- userIds.txt</div><div class="line">for userId in userIds:</div><div class="line">	actualUrl = url.replace(&quot;$&#123;userId&#125;&quot;, userId)</div><div class="line">	curl -H &apos;Cooike: xxx&apos; actualUrl</div></pre></td></tr></table></figure>
+<p>但偏偏shell又不太熟，还得调试，想想就头大。此时组里新来的清华实习生给出了简单粗暴的方式，直接在userIds.txt文件上做文章，用sublime的文本替换功能，将文本中每一行，如第一行userId1的行首<code>^</code>替换为请求url中<code>${userId}</code>之前的子串<strong>curl -H ‘Cooike: xxx’ <a href="https://www.yangbing.club/">https://www.yangbing.club/</a></strong>，将行尾<code>$</code>替换为url中<code>${userId}</code>之后的子串<strong>/doing</strong>，这样就得到如下的结果文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">curl -H &apos;Cooike: xxx&apos; https://www.yangbing.club/userId1/doing</div><div class="line">curl -H &apos;Cooike: xxx&apos; https://www.yangbing.club/userId2/doing</div><div class="line">curl -H &apos;Cooike: xxx&apos; https://www.yangbing.club/userId3/doing</div><div class="line">...</div><div class="line">curl -H &apos;Cooike: xxx&apos; https://www.yangbing.club/userIdn/doing</div></pre></td></tr></table></figure>
+<p>然后一行命令就能搞定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh userIds.txt</div></pre></td></tr></table></figure>
+<p>如果处理速度慢了想要并发，又可以通过split命令将userIds.txt按记录行数拆分成多个小文件，然后依次sh，利用操作系统的多进程并发处理。</p>
+<p>回想这个事情的处理过程，我们的最终目的实际是为不同的userId生成对应的url，然后curl请求执行。程序员的固有思维就是消除重复，尽可能复用！对于这种userId不同，有相同的url模板的典型case，很自然的想到用循环。而忽略了<code>ctrl C/V</code>这种“重复”的快捷方式。</p>
+<h3 id="栗子2：日常开发"><a href="#栗子2：日常开发" class="headerlink" title="栗子2：日常开发"></a>栗子2：日常开发</h3><p>产品有个导数据的需求，要将特定筛选条件下的用户列表导出为Excel文件。这本身并不难，一个常规的Job就能搞定了。</p>
+<p>同事A的方案也很常规，算是比较自然的思路，大概构想了一下代码流程，类似这样：组织筛选代码逻辑，将符合条件的用户列表筛出来，然后将列表转换为行数组，并构建标题数组，再通过Excel三方库或公司已有的工具类，将数据写入Excel文件。在这过程中，除了筛选条件的代码逻辑外，转为Excel工具需要的数据格式并生成Excel文件，看起来是最耗时的工作。</p>
+<p>这看起来好像没啥问题，但笔者并没有采用上述方案。我们来看下这个需求，首先它是个一次性的，数据导出之后就完事了，也没有后续迭代；其次，Excel文件只是产品所需要结果的一种文件格式，我们只要能确保最终给到产品的是Excel就行，至于我们是通过代码生成Excel的方式，还是借用Office Excel强大功能将其他格式的文件转换为Excel的方式，产品并不关心。而我们又知道，Office Excel可以轻松支持将特定分隔符（如逗号、tab键）的文本文件导入为Excel，因而方案自然就变为：</p>
+<p>先筛选出符合条件的用户列表，然后通过<strong>log.info</strong>将每个用户记录User的各字段以逗号”,”分割打印一行，这样我们就得到了第一版数据——日志文件，大概长这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">......<span class="comment">// 启动日志</span></div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">42</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] job start</div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">42</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] user info:<span class="number">10506672</span>,<span class="string">"userName1"</span>,<span class="string">"address1"</span>,<span class="number">2</span> </div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">42</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] user info:<span class="number">10506673</span>,<span class="string">"userName2"</span>,<span class="string">"address2"</span>,<span class="number">3</span> </div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">42</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] user info:<span class="number">10506674</span>,<span class="string">"userName3"</span>,<span class="string">"address3"</span>,<span class="number">2</span></div><div class="line">......</div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">45</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] user info:<span class="number">10506694</span>,<span class="string">"userName100"</span>,<span class="string">"address100"</span>,<span class="number">1</span></div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">45</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] has processed <span class="number">100</span> users</div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">45</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] user info:<span class="number">10506694</span>,<span class="string">"userName101"</span>,<span class="string">"address101"</span>,<span class="number">1</span></div><div class="line">......</div><div class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">25</span> <span class="number">23</span>:<span class="number">00</span>:<span class="number">42</span> [INFO] [Thread-<span class="number">17</span>] [org.sherlockyb.blogdemos.ExportUserJob] job end</div><div class="line">......<span class="comment">// job退出日志</span></div></pre></td></tr></table></figure>
+<p>这时候，强大的文本编辑工具sublime就登场了。可以看到，日志中除了含有<strong>user info</strong>的行尾是我们需要的数据，其余都是无用信息，冗余数据处理分为如下几步：</p>
 <ul>
-<li>通过一个类的全限定名来获取定义此类的二进制字节流。</li>
-<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</li>
-<li>在内存中生成一个代表此类的<strong>java.lang.class</strong>对象，作为对方法区中此类的各种数据的访问入口。</li>
+<li>job起始和结束我们通常会打印<strong>job start</strong>和<strong>job end</strong>，那么这两行分别之前和之后的内容可以直接删除</li>
+<li>像<strong>has processed xxx users</strong>这种打印job进度的信息，可以通过正则<strong>.*has processed [\d]+ users\n</strong>替换为空串，这个地方需要注意一个细节，就是正则中要包含”\n”符号，否则替换后会留下空行，比较尴尬。</li>
+<li>前面两步处理完后，就剩下数据行了，然后用正则<strong>.*[org.sherlockyb.blogdemos.ExportUserJob] user info:</strong>把无用的前缀替换为空串即可。</li>
+<li>剩下的数据行其实就是标准的CSV格式文件了，改下后缀，然后打开文件，将内容复制到Excel文件即可。或者在打印日志时我们用”\t”分割，这样在得到剩下的数据行时，可以直接复制到新建的Excel文件也是可以的<br>可以看到，这个方案的核心在于，通过Office Excel已有的强大功能，代替了通过写代码生成Excel的方式，从某种意义上说，这也是复用，只不过复用的不是现有代码，而是现有的软件功能，而这些强大的软件功能，同样也是别人写代码实现的，间接地复用了”已有代码”。</li>
 </ul>
-<p>这三条属于虚拟机规范的内容，只指明了做什么，具体实现交由虚拟机实现自行安排，这就给了虚拟机实现和具体应用足够的灵活度。对于第一条，并未指明定义类的二进制字节流的存储形式（class文件、ZIP包）、来源（本地文件系统、内存或网络）以及获取方式（既可以从已有静态资源读取也可动态生成），因而就有了如下的多样可能性：</p>
+<p>同事A后来听我跟他讲完我的实现方案，表示“秀了我一脸”，真实。。。。</p>
+<h2 id="用“好工具”，“用好”工具"><a href="#用“好工具”，“用好”工具" class="headerlink" title="用“好工具”，“用好”工具"></a>用“好工具”，“用好”工具</h2><p>好的工具能让我们极大地提升做事效率。</p>
+<p>以前我对于日常开发工具的认知就是，够用就行，不用太深究，专注代码和技术。直到后来，当我见识到周围的朋友如何熟练地通过各种工具快速达到目的的时候，感觉真的被秀了一脸。</p>
+<p>好的工具有哪些呢？笔者有个推荐清单：</p>
 <ul>
-<li><strong>从ZIP包中读取</strong>，这是后来支持类加载器可从<strong>JAR、EAR、WAR</strong>等格式文件中加载class的基础。</li>
-<li><strong>从网络中获取字节流</strong>，我们熟知的Applet是这种场景的典型应用。</li>
-<li><strong>程序动态生成字节流</strong>，这种场景应用最多的就是动态代理，通过字节码技术动态生成代理类的二进制字节流。</li>
-<li><strong>由除了Java源文件之外的其他文件编译而成</strong>，如JSP文件、Scala源文件等。</li>
+<li>IntelliJ idea，真的比eclipse好用太多，用过的才知道。可配置各种常用快捷键，如项目切换、代码视图回退、代码跳转等</li>
+<li>Sublime，强大的文本编辑工具，日常的文本处理用它就行</li>
+<li>Excel，再普通不过了，基本用过pc的人都了解过一些基本用法，但又有多少人用过筛选、列隐藏、多列排序、指定分隔符导入文本数据等功能呢？多研究多使用，你会发现不一样的天空。</li>
+<li>Alfred，mac下强大的搜索工具，真的很强大。在一个小小的命令框内，它可以快速定位本地文件，使用计算器、词典，等等。比如通过<code>idea 项目名</code>，你可以快速打开指定的idea项目，这比你每次点击<strong>File</strong> -&gt; <strong>Open</strong> -&gt; <strong>选择项目目录</strong> -&gt; <strong>ok</strong>，可是要快的多！</li>
+<li>open-falcon，小米开源的监控平台，虽然使用上不太友好，但东西还是挺全的，需要的监控指标和功能基本都有</li>
 </ul>
-<p>对于第三条中所说的“内存”，虚拟机规范并没有明确规定是在Java堆还是方法区中，对于我们最为熟悉的<strong>HotSpot</strong>虚拟机，是存放在Java堆的永久代中。实际上永久代是<strong>HotSpot</strong>虚拟机特有的，是它对虚拟机规范中方法区概念的具体实现（<strong>JDK1.7及以下</strong>），对于其他虚拟机（如<strong>IBM J9</strong>）是不存在永久代一说的，关于方法区和永久代的关系超出本博文的谈论范畴了，点到为止。</p>
-<p>加载阶段完成后，原本定义类的二进制字节流就按照虚拟机所需的格式存储在方法区中，这里的存储格式依具体的虚拟机实现而定，各有差异，虚拟机规范并未规定此区域的具体数据结构。</p>
-<p>关于<strong>加载阶段的注意点</strong>：</p>
-<ol>
-<li>数组类的加载比较特殊，它本身并不通过类加载器创建，而是由Java虚拟机直接创建，但数组类的元素类型（去掉所有维度后的类型，比如A[][]的元素类型，就是A）是由类加载器加载的。举例，对于类型<code>org.sherlockyb.test.HelloWorld</code>，定义一维数组类<code>HelloWorld[] hws = new HelloWorld[8]</code>，虚拟机会直接创建名为“[Lorg.sherlockyb.test.HelloWorld”的数组类，并对其进行初始化。</li>
-</ol>
-<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p>上一节中加载阶段的第一步骤——“通过一个类的全限定名来获取定义此类的二进制字节流”，就是类加载器所做的唯一工作，类加载器是Java技术体系中的重要基石，它在类层次划分、OSGi、热部署、代码加密等领域扮演着重要角色，关于它我们暂且不做细致介绍，后面会有单独博文深入探讨之。</p>
-<h4 id="加载时机"><a href="#加载时机" class="headerlink" title="加载时机"></a>加载时机</h4><p>虚拟机规范并未强制规定加载阶段具体什么时候开始，由虚拟机实现自由把握。就我们所熟知的<strong>HotSpot</strong>虚拟机来说，有两种情况：</p>
-<ul>
-<li><strong>预加载</strong>。虚拟机在启动时会预先加载rt.jar中的class文件，其中包括<strong>java.lang.*、java.util.*、java.io.*</strong>等运行时常用的类。</li>
-<li><strong>运行时加载</strong>。当虚拟机在运行过程中需要某个类时，如果该类的class未被加载则加载之。</li>
-</ul>
-<h3 id="1-2-连接"><a href="#1-2-连接" class="headerlink" title="1.2 连接"></a>1.2 连接</h3><p>连接可细分为三个阶段：验证、准备和解析。</p>
-<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>连接的第一个阶段，确保从class文件中所加载的字节流符合当前虚拟机的要求，且<strong>不会危害虚拟机自身的安全</strong>。该阶段会依次进行如下验证：</p>
-<ul>
-<li><strong>文件格式验证</strong>：判断当前字节流是否符合<strong>class文件格式</strong>的规范。如是否以class文件的魔数<strong>oxCAFEBABE</strong>开头、主次版本号是否在当前虚拟机的处理范围之内、常量池中常量的类型是否合法等等。校验的目的是保证字节流能正确地解析并存储于方法区内，通过验证后，会在方法区中存储，后面的校验动作都是基于方法区的存储结构进行，不再直接操作字节流。</li>
-<li><strong>元数据验证</strong>：语义分析，判断其描述的信息是否符合Java语言的规范要求。如该类除了<strong>java.lang.Object</strong>之外，是否有其他父类；该类的父类是否继承了不允许被继承的final类等</li>
-<li><strong>字节码验证</strong>：通过数据流和控制流分析，判断程序语义是否合法、符合逻辑。如保证跳转指令不会跳转到方法体以外的字节码指令上、方法体中的类型转换是有效的等。</li>
-<li><strong>符号引用验证</strong>：发生在解析阶段将符号引用转为直接引用的时候，确保解析动作能正确执行。如符号引用中通过字符串描述的全限定名是否能找到对应类。</li>
-</ul>
-<p>从上面可以看出，验证阶段非常重要，关乎虚拟机的安全，<strong>但它并不是必须的</strong>，它对程序运行期没有影响，如果所引用的类已被反复使用和验证过，那么可以考虑采用<code>-Xverifynone</code>参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。通常来讲，应用所加载的class文件都是由我们本地或服务器的JDK编译通过的，我们都确定它是符合虚拟机要求的，对于这类class文件其实并不需要验证，主要是像从网络加载的class字节流或是通过动态字节码技术生成的字节流，出于安全的考虑，是必须要经过严格验证的。</p>
-<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>准备阶段做的唯一一件事就是为类的静态变量分配内存，并将其初始化为默认值。注意这里的初始化和后面要讲的“初始化阶段”是不同的，容易混淆。<strong>这些内存都在方法区中分配</strong>。几点注意项：</p>
-<ul>
-<li>对于初始化为默认值这一点，有两个角度的理解：从Java应用层面讲，会为不同的类型设置对应的<strong>零值</strong>，如对于int、long、byte等整数对应就是0，对于float、double等浮点数则是0.0，而对于引用类型则是null，有个零值映射表，具体就不在这一一列举了；从JVM层面，实际上就是分配了一块全0值的内存，只是不同的数据类型对于0值有不同的解释含义，这是Java编译器自动为我们做的。</li>
-<li>如果类的静态变量是<strong>final</strong>的，即它的字段属性表中存在<strong>ConstantValue</strong>属性，那么在准备阶段就会被初始化为程序指定的值，比如对于<code>public static final int len = 5</code>，在准备阶段<code>len</code>的值已经被设置为5了。实际上对于final的类变量，在编译时就已经将其结果放入了调用它的类的常量池中，这种类变量的访问并不会触发其所属类的初始化阶段。</li>
-</ul>
-<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p>该阶段把类在常量池中的符号引用转为直接引用。符号引用就是一组用来描述目标的字面量，说白了就是静态的占位符，与内存布局无关，而直接引用则是运行时的，是指内存中直接指向目标的指针、相对偏移量或间接定位到目标的句柄。解析工作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用限定符这7类符号引用，将其替换为直接引用。</p>
-<p>虚拟机规范规定，在执行<strong>anewarray、checkcast、getfield、getstatic、instanceof、invokedynamic、invokeinterface、invokespecial、invokestatic、invokevirtual、ldc、ldc_w、multianewarray、new、putfield</strong>和<strong>putstatic</strong>这16个用于操作符号引用的字节码指令之前，必须先对符号引用进行解析。至于具体时间并未要求，交由虚拟机实现自行决定：在类被加载时就对常量池中的符号引用进行解析（静态指令，除invokedynamic之外的），或是等到一个符号引用将要被使用前才去解析（动态指令：invokedynamic，为了支持动态绑定）。</p>
-<h3 id="1-3-初始化"><a href="#1-3-初始化" class="headerlink" title="1.3 初始化"></a>1.3 初始化</h3><p>为类的静态变量赋予程序设定的初始值。在Java中对类变量设定初始值有两种方式：声明类变量时指定初始值和静态代码块为静态变量赋值。我们来看下类的初始化步骤：</p>
-<ul>
-<li>若该类还没有被加载和连接，则先加载并连接该类</li>
-<li>若该类的直接父类没有被初始化，则先初始化其父类（接口没有此规则）</li>
-<li>若该类有初始化语句（赋值语句和静态代码块），则按照代码中申明的顺序依次执行初始化语句</li>
-</ul>
-<p>我们可以从字节码层面获知上述初始化步骤的原理，</p>
-<blockquote>
-<p>编译器在编译Java源文件时，自动收集类中所有类变量的赋值操作和静态语句块中的语句（<strong>按照源码中声明先后顺序</strong>），将其合并产生<strong>&lt;clinit&gt;</strong>方法，即<strong>类构造器</strong>（注意与实例构造器<strong>&lt;init&gt;</strong>相区分）。该方法的执行过程遵循以下规则：</p>
-</blockquote>
-<ul>
-<li>虚拟机保证在子类的<strong>&lt;clinit&gt;</strong>方法执行之前，会先执行父类的<strong>&lt;clinit&gt;</strong>方法（<strong>若父类是接口，则忽略不执行</strong>），依次递归。</li>
-<li><strong>&lt;clinit&gt;</strong>方法并不是必须的。若一个类或接口中既没有类变量的赋值操作也没有静态语句块（<strong>接口没有此项</strong>），编译器可以不为它生成<strong>&lt;clinit&gt;</strong>方法。</li>
-<li>虚拟机会保证<strong>&lt;clinit&gt;</strong>方法在多线程环境中被正确地加锁、同步，确保同一时刻只会有一个线程去执行该方法。这也是单例模式其中一种实现方式（定义静态实例）的依据。</li>
-</ul>
-<h4 id="初始化时机"><a href="#初始化时机" class="headerlink" title="初始化时机"></a>初始化时机</h4><p>虚拟机规范严格规定，当发生对一个类的<strong>主动引用</strong>时，会立即触发类的初始化阶段。<strong>主动引用</strong>有且仅有以下5种情况：</p>
-<ul>
-<li>遇到<strong>new</strong>、<strong>getstatic</strong>、<strong>putstatic</strong>或<strong>invokestatic</strong>这4条字节码时，如果类没有被初始化，则先触发其初始化。从Java代码层面来讲，就是使用<strong>new</strong>关键字实例化对象、读取或设置类的静态字段（<strong>final</strong>修饰的常量字段除外）、调用静态方法的时候。</li>
-<li>使用<strong>java.lang.reflect</strong>包的方法对类进行反射调用时，如Class.forName(…)。</li>
-<li>当初始化一个类时，若其父类还未初始化，则先触发其父类的初始化（接口无此规则）。</li>
-<li>当虚拟机启动时，用户需指定一个主类（包含main方法），虚拟机会先初始化该类。</li>
-<li>对于<strong>REF_getStatic、REF_putStatic、REF_invokeStatic</strong>方法句柄（使用JDK1.7的动态特性），若其对应的类还未初始化，则先触发其初始化。</li>
-</ul>
-<p>除此之外，其他所有引用类的方式都属于<strong>被动引用</strong>，不会触发初始化。</p>
-<h2 id="二、类的使用"><a href="#二、类的使用" class="headerlink" title="二、类的使用"></a>二、类的使用</h2><p>包括主动引用和被动引用，前者在上节已有说明，我们来列举几个被动引用的实例：</p>
-<ul>
-<li>通过子类调用父类的静态字段，不会触发子类初始化。</li>
-<li>通过数组定义来引用类，不会触发该类的初始化。例如<code>A[] arr = new A[8]</code> ，并不会触发A的初始化。</li>
-<li>在类A中调用B的常量字段，不会触发B的初始化。因为此常量字段在编译阶段会通过常量传播优化而存入调用类A的常量池中，本质上并没有直接引用到定义类B。且编译成class之后，A和B就不存在任何联系了。</li>
-</ul>
-<h2 id="三、类的卸载"><a href="#三、类的卸载" class="headerlink" title="三、类的卸载"></a>三、类的卸载</h2><p>当一个类被判定为无用类时，才可以被卸载。条件苛刻，需要同时满足如下条件：</p>
-<ul>
-<li>类的所有实例都已被回收。</li>
-<li>加载该类的ClassLoader已被回收。</li>
-<li>该类对应的<strong>java.lang.Class</strong>对象没有在任何地方被引用。</li>
-</ul>
-<p>对于满足上述3个条件的无用类，虚拟机可以对其回收，但并不是必然的，是否回收可通过<code>-Xnoclassgc</code>参数控制。<strong>注意</strong>：在大量使用反射、动态代理等字节码框架、动态生成JSP以及OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能，以保证永久代（特指HotSpot虚拟机）不会溢出。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>终于算是“走马观花”般地把Java类的生命周期过了一遍，相信当再提起类的生命周期时，大家脑海里就会立马浮现出类生命周期的大纲，都有哪些阶段，每个阶段都大致做些什么事情，都有些什么注意点，这样，本博文的目的就达到了！掌握了全局之后，接下来就是细节的探讨，比如像验证阶段中的字节码验证，实际是非常复杂的，虚拟机专门为此做了诸多优化；再比如解析阶段，7类符号引用各自不同的解析细节又是什么，等等之类。之后，笔者将会单独另起博文，针对类加载器、解析阶段等进行详细分析，敬请期待。</p>
+<p>除了上面列的，还有很多日常可用的工具，基本只要你能想到的，都会有。在挖掘新的可用工具的同时，对于已经经常在使用的工具，可以深究，也许你会发现很多好用的feature，用好它，让你事半功倍。</p>
+<h2 id="积极主动，要有owner精神"><a href="#积极主动，要有owner精神" class="headerlink" title="积极主动，要有owner精神"></a>积极主动，要有owner精神</h2><p>积极主动反映的是良好的工作态度，团队需要积极的氛围，领导更需要积极的人才。</p>
+<p>owner精神，则需要较强的责任心，对所参与的业务以及团队负责的业务负责，开发时积极推动项目进度，协调各方优先级，确保项目如期高质量上线；遇到线上故障时，积极响应，确保在最短的时间内解除故障。</p>
+<h2 id="沟通很重要，对上和对下"><a href="#沟通很重要，对上和对下" class="headerlink" title="沟通很重要，对上和对下"></a>沟通很重要，对上和对下</h2><p>没有什么事情是沟通解决不了的，如果有，就多次沟通。</p>
+<p>对上沟通，能让领导对你有所知，有所期望，可能还会有额外的指导，能及时暴露风险，尽早解决；对下沟通，能让你带的小伙伴感受到温暖，知道你时刻在关注着他，这是正向反馈。另外，你也能及时了解他当前的状况，如有困惑，帮助他解决，让他少走弯路；如有新的想法，拿出来讨论，或许会给你带来新的启发。</p>
+<h2 id="爱钻研，有技术追求"><a href="#爱钻研，有技术追求" class="headerlink" title="爱钻研，有技术追求"></a>爱钻研，有技术追求</h2><p>我在面试的时候，经常会看这一点。对于爱钻研，有技术追求的候选人，他首先一定是自驱力不错的，因为技术钻研这个事儿纯粹是出于个人意愿，能坚持下来，不容易。其次，他对于技术是有好奇心的，好奇心会驱使他去研究这里面的细节，搞清楚原理，不会浮于表面。</p>
+<h2 id="反对过度设计与优化"><a href="#反对过度设计与优化" class="headerlink" title="反对过度设计与优化"></a>反对过度设计与优化</h2><p>技术架构一定是依托于业务的。</p>
+<p>公司发展的不同阶段，业务量级的不同，所需要的技术架构是不一样的。初创期，业务规模小，产品迭代速度快，此时需要的是快速支持，快速开发，比如很多统计数据的场景就直接实时计算了，后端服务可能就是一个单体应用，这些都是可以接受的；随着业务发展，业务形态多样化，用户量快速增长，导致系统压力、复杂度倍增，此时就需要考虑微服务拆分、分布式、性能优化、Redis缓存、分库拆表等技术方案了。</p>
+<p>技术架构除了要考虑能否支持业务发展，技术先进性外，也要考虑成本，这里面既有数据库、服务节点等资源成本，也有开发成本，更多时候是取一种折中方案，收益最大化。</p>
+<h2 id="成也经验，败也经验"><a href="#成也经验，败也经验" class="headerlink" title="成也经验，败也经验"></a>成也经验，败也经验</h2><p>过去的经验能让我们在处理新的问题时有参考依据，尽量少走弯路，通常这是没问题的。但有一个误区是，过分相信此前的经验，认为那绝对是对的。工作中就遇到过这类case，关于thrift新增字段，是否需要设置为optional的，同事A很自信地认为用默认的required就行，因为之前这么干过没问题。但很快实验表明，新增required字段，会导致新老版本不兼容，call端会报异常。</p>
+<p>经验有对有错，我们需要有质疑心态，不能尽信之。</p>
 
       
     </div>
@@ -547,9 +508,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JVM/" rel="tag"># JVM</a>
-          
-            <a href="/tags/类的生命周期/" rel="tag"># 类的生命周期</a>
+            <a href="/tags/思考/" rel="tag"># 思考</a>
           
         </div>
       
@@ -560,7 +519,7 @@
             <strong>本文作者：</strong>sherlockyb
           </li>
           <li class="post-copyright-link">
-            <strong>本文链接：</strong><a href="/2018/04/15/talk-about-java-class-lifecycle/" title="JVM系列[1]-Java类的生命周期">http://www.yangbing.club/2018/04/15/talk-about-java-class-lifecycle/</a>
+            <strong>本文链接：</strong><a href="/2019/12/21/some-insights-at-work/" title="工作中的一些感悟">http://www.yangbing.club/2019/12/21/some-insights-at-work/</a>
           </li>
           <li class="post-copyright-license">
             <strong>许可协议： </strong>
@@ -578,8 +537,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/13/two-long-types-can-not-use-left-parenthesis-or-right-parenthesis-to-compare-with-each-other-directly-No-they-can/" rel="next" title="两个Long类型真的不能直接用>或<比较么？其实可以">
-                <i class="fa fa-chevron-left"></i> 两个Long类型真的不能直接用>或<比较么？其实可以
+              <a href="/2019/07/07/jvm-series-java-class-loading-mechanism/" rel="next" title="JVM系列[2]-Java类加载机制">
+                <i class="fa fa-chevron-left"></i> JVM系列[2]-Java类加载机制
               </a>
             
           </div>
@@ -587,10 +546,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/29/save-hexo-source-post-with-git-branch/" rel="prev" title="使用git分支保存hexo博客源码到github">
-                使用git分支保存hexo博客源码到github <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -809,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类的生命周期"><span class="nav-text">类的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、类加载的过程"><span class="nav-text">一、类加载的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-加载"><span class="nav-text">1.1 加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类加载器"><span class="nav-text">类加载器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载时机"><span class="nav-text">加载时机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-连接"><span class="nav-text">1.2 连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-text">验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备"><span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析"><span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-初始化"><span class="nav-text">1.3 初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化时机"><span class="nav-text">初始化时机</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、类的使用"><span class="nav-text">二、类的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、类的卸载"><span class="nav-text">三、类的卸载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学会向上汇报"><span class="nav-text">学会向上汇报</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打破局限，解决问题才是王道"><span class="nav-text">打破局限，解决问题才是王道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子1：故障处理"><span class="nav-text">栗子1：故障处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子2：日常开发"><span class="nav-text">栗子2：日常开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用“好工具”，“用好”工具"><span class="nav-text">用“好工具”，“用好”工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#积极主动，要有owner精神"><span class="nav-text">积极主动，要有owner精神</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沟通很重要，对上和对下"><span class="nav-text">沟通很重要，对上和对下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爱钻研，有技术追求"><span class="nav-text">爱钻研，有技术追求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反对过度设计与优化"><span class="nav-text">反对过度设计与优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成也经验，败也经验"><span class="nav-text">成也经验，败也经验</span></a></li></ol></div>
             
 
           </div>
